@@ -1,8 +1,14 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import {resetServerContext} from 'react-beautiful-dnd'
 
-export default function Document() {
+interface DocumentProps {
+  locale:string
+}
+
+export default function MyDocument({locale}:DocumentProps):JSX.Element {
+  resetServerContext()
   return (
-    <Html lang="en">
+    <Html lang='en'>
       <Head />
       <body>
         <Main />
@@ -11,3 +17,9 @@ export default function Document() {
     </Html>
   )
 }
+
+// MyDocument.getInitialProps = async (ctx:DocumentContext) => {
+//   const initialProps = await Document.getInitialProps(ctx);
+//   const locale = ctx.locale || 'en';
+//   return {...initialProps, locale};
+// }
